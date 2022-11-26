@@ -18,8 +18,8 @@ var hourFiveEl = $('#17');
 var times = [hourNineEl[0].id, hourTenEl[0].id, hourElevenEl[0].id, hourTwelveEl[0].id, hourOneEl[0].id, hourTwoEl[0].id, hourThreeEl[0].id, hourFourEl[0].id, hourFiveEl[0].id]; //array of time blocks in ID form
 var currentHour = dayjs().hour(); // gets current hour Accepts numbers from 0 to 23
 
-var userInput = $(".description");
-var text = 
+var userInput;
+var timeId;
 
 $(function () {
   var today = dayjs();
@@ -31,11 +31,11 @@ $(function () {
 // function? How can DOM traversal be used to get the "hour-x" id of the
 // time-block containing the button that was clicked? How might the id be
 // useful when saving the description in local storage? 
-$("button").click(function(){
-  console.log("click")
-  localStorage.setItem("userInput", userInput[0])
-  console.log(userInput[0])
-  });
+$("button").click(function () {
+  userInput = ($(this).siblings('.description').val())
+  timeId = ($(this).parents().attr("id"));
+  localStorage.setItem(timeId, userInput)
+});
 // TODO: Add code to apply the past, present, or future class to each time
 // block by comparing the id to the current hour. HINTS: How can the id
 // attribute of each time-block be used to conditionally add or remove the
@@ -55,17 +55,9 @@ $(document).ready(function () {
     }
   }
 });
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  // $(document).ready(function () {
-  
-  // })
-
-
-  // $(document).ready(function () {
-  //   for (let i = 0; i < times.length; i++) {
-  //       $(`#${times[i]}`).click(function(){
-  //           console.log("click")
-  //       })
-  // }});
+// TODO: Add code to get any user input that was saved in localStorage and set
+// the values of the corresponding textarea elements. HINT: How can the id
+// attribute of each time-block be used to do this?
+$(document).ready(function () {
+$("#9 .description").val() = localStorage.getItem(userInput);
+});
