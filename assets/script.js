@@ -1,6 +1,4 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+// got element identifiers using Jquery syntax
 var hourNineEl = $('#9');
 var hourTenEl = $('#10');
 var hourElevenEl = $('#11');
@@ -11,41 +9,31 @@ var hourThreeEl = $('#15');
 var hourFourEl = $('#16');
 var hourFiveEl = $('#17');
 
-// var pastClassEl = $('.past');
-// var presentClassEl = $('.present');
-// var futureClassEl = $('.future');
-
-var times = [hourNineEl[0].id, hourTenEl[0].id, hourElevenEl[0].id, hourTwelveEl[0].id, hourOneEl[0].id, hourTwoEl[0].id, hourThreeEl[0].id, hourFourEl[0].id, hourFiveEl[0].id]; //array of time blocks in ID form
-var currentHour = dayjs().hour(); // gets current hour Accepts numbers from 0 to 23
+//array of time blocks in ID form gets current hour and accepts numbers from 0 to 23
+var times = [hourNineEl[0].id, hourTenEl[0].id, hourElevenEl[0].id, hourTwelveEl[0].id, hourOneEl[0].id, hourTwoEl[0].id, hourThreeEl[0].id, hourFourEl[0].id, hourFiveEl[0].id]; 
+var currentHour = dayjs().hour(); 
 
 var userInput;
 var timeId;
 
+//function below adds the date to the top of my webpage
 $(function () {
   var today = dayjs();
   $('#currentDay').text(today.format('dddd, MMM D, YYYY'));
 });
-// TODO: Add a listener for click events on the save button. This code should
-// use the id in the containing time-block as a key to save the user input in
-// local storage. HINT: What does `this` reference in the click listener
-// function? How can DOM traversal be used to get the "hour-x" id of the
-// time-block containing the button that was clicked? How might the id be
-// useful when saving the description in local storage? 
+// added event listener for the click button to save user input into local storage. 
 $("button").click(function () {
-  userInput = ($(this).siblings('.description').val())
-  timeId = ($(this).parents().attr("id"));
-  localStorage.setItem(timeId, userInput)
+  userInput = ($(this).siblings('.description').val()); //gets value of the text typed in the textarea element 
+  timeId = ($(this).parents().attr("id")); //gets value of attribute Id
+  localStorage.setItem(timeId, userInput) //stored value of attribute id and the text typed in the textarea element in the local storage as a key, value pair. 
 });
-// TODO: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
+// This code loops through my hour identifiers until it matches the current hour of the day. 
+//The if statements below are to determine what class each section will be depending on the hour of the day. 
 $(document).ready(function () {
   for (let i = 0; i < times.length; i++) {
     if (currentHour == times[i]) {
       $(`#${times[i]}`).addClass('present')
-      // $("#" + times[i]).addClass('present')
+      // $("#" + times[i]).addClass('present') // combines the identifier Id attribute with the time index in my array of times. 
     }
     if (currentHour > times[i]) {
       $(`#${times[i]}`).addClass('past')
@@ -55,9 +43,10 @@ $(document).ready(function () {
     }
   }
 });
-// TODO: Add code to get any user input that was saved in localStorage and set
-// the values of the corresponding textarea elements. HINT: How can the id
-// attribute of each time-block be used to do this?
+// Code gets items from local storage 
 $(document).ready(function () {
-$("#9 .description").val() = localStorage.getItem(userInput);
-});
+  $(".description").each(function() { //interated through the description classes of each section in HTML
+  savedData = ($(this).parents().attr("id").toString()); //pulls value of the Id elemnts it iterates through and turns the numbers into strings.
+    $("#"+savedData+" .description").val(localStorage.getItem(savedData)); // combines Id attribute with the savedData value and description class where user input is stored.
+  })
+  });
