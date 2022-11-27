@@ -4,7 +4,7 @@ I have created an online daily work planner application that allows a user to sa
 
 ## Installation
 
-There is no installation needed to access the quiz. It is available on the internet through the following link: 
+There is no installation needed to access the quiz. It is available on the internet through the following link: https://yvieyra.github.io/daily-work-planner/
 
 ## Usage
 
