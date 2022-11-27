@@ -11,4 +11,7 @@ There is no installation needed to access the quiz. It is available on the inter
 The user can start by typing their tasks in the desired time block in which they plan on completing each task. The user will then hit the save button located on the right to save the typed task. The user can refresh the page without losing any typed text in the time blocks if they hit the save button. 
 
 ## Screenshot of Webpage 
-git ad
+
+![alt text](./images/local%20storage%20saved%20.png)
+![alt text](./images/schedule%20screenshot%20.png)
+![alt text](./images/second%20half%20of%20schedule%20.png)
